@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "290467314219",
+    "firebase_url": "https://gfit-204c1.firebaseio.com",
+    "project_id": "gfit-204c1",
+    "storage_bucket": "gfit-204c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290467314219:android:986d3ab689e0a89c",
+        "android_client_info": {
+          "package_name": "com.example.gfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290467314219-g64affmv0mhdq240biuufk2argvuav62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gfit",
+            "certificate_hash": "e6d29491261c72e3ee9547249f848fcd55b13236"
+          }
+        },
+        {
+          "client_id": "290467314219-e9lc7n52l4672ncm4td2gi7kna3qgaut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBabyY9gWyE0wDgQKraiOz3vlw8i7-O6po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290467314219-e9lc7n52l4672ncm4td2gi7kna3qgaut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
