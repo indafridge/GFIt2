@@ -1,7 +1,55 @@
 package com.example.gfit;
 
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterPage extends AppCompatActivity {
+
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private String UserId;
+    private EditText Name;
+    private EditText Password;
+    private EditText RePassword;
+    private EditText Email;
+    private Button Register;
+    private Button Account;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register_page);
+
+        Name = (EditText)findViewById(R.id.etName);
+        Password = (EditText)findViewById(R.id.etPassword);
+        RePassword = (EditText)findViewById(R.id.etRePassword);
+        Email = (EditText)findViewById(R.id.etEmail);
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+        mFirebaseDatabase = mFirebaseInstance.getReference("DataUsers");
+        UserId = mFirebaseDatabase.push().getKey();
+    }
+
+    public void addUser(String username, String password, String email){
+        User users = new User(username, password, email);
+        mFirebaseDatabase.child("Users").child(UserId).setValue(users);
+    }
+    public void updateUser(String username, String email, String password){
+        mFirebaseDatabase.child("Users").child(UserId).child("username").setValue(username);
+        mFirebaseDatabase.child("Users").child(UserId).child("password").setValue(password);
+        mFirebaseDatabase.child("Users").child(UserId).child("email").setValue(email);
+    }
+
+    public void insertData(View view){
+        addUser(Name.getText().toString().trim(),Password.getText().toString().trim(),Email.getText().toString().trim());
+    }
 
 }
