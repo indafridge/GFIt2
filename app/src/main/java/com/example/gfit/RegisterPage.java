@@ -38,18 +38,19 @@ public class RegisterPage extends AppCompatActivity {
         UserId = mFirebaseDatabase.push().getKey();
     }
 
-    public void addUser(String username, String password, String email){
-        User users = new User(username, password, email);
+    public void addUser(String username, String password, String repassword, String email){
+        User users = new User(username, password, repassword, email);
         mFirebaseDatabase.child("Users").child(UserId).setValue(users);
     }
-    public void updateUser(String username, String email, String password){
+    public void updateUser(String username, String password, String repassword, String email){
         mFirebaseDatabase.child("Users").child(UserId).child("username").setValue(username);
         mFirebaseDatabase.child("Users").child(UserId).child("password").setValue(password);
+        mFirebaseDatabase.child("Users").child(UserId).child("repassword").setValue(repassword);
         mFirebaseDatabase.child("Users").child(UserId).child("email").setValue(email);
     }
 
     public void insertData(View view){
-        addUser(Name.getText().toString().trim(),Password.getText().toString().trim(),Email.getText().toString().trim());
+        addUser(Name.getText().toString().trim(),Password.getText().toString().trim(),RePassword.getText().toString().trim(),Email.getText().toString().trim());
     }
 
 }
