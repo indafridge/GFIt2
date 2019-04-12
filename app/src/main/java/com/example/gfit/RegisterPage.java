@@ -40,7 +40,7 @@ public class RegisterPage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                           // sendEmailVerification();
+                            sendEmailVerification();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -55,7 +55,7 @@ public class RegisterPage extends AppCompatActivity {
                 });
         // [END create_user_with_email]
     }
-   /* private void sendEmailVerification() {
+   private void sendEmailVerification() {
         // Disable button
 
 
@@ -76,7 +76,6 @@ public class RegisterPage extends AppCompatActivity {
                 });
         // [END send_email_verification]
     }
-*/
     public void ClickSign(View view){
         createAccount(email.getText().toString(),pass.getText().toString());
     }

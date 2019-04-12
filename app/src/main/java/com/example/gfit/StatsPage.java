@@ -1,5 +1,12 @@
 package com.example.gfit;
 
-public class StatsPage {
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
+public class StatsPage extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 }
