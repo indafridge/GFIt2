@@ -11,11 +11,17 @@ import android.widget.ImageButton;
 public class HomePage extends AppCompatActivity {
     private ImageButton Camera;
     private Button Stats;
+    private Button Fight;
+    private Button Goals;
+    private Button Groups;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Stats = findViewById(R.id.btnStats);
+        Fight = findViewById(R.id.btnFight);
+        Goals = findViewById(R.id.btnGoals);
+        Groups = findViewById(R.id.btnGroups);
     }
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -32,7 +38,23 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void clickStats(View view) {
-        Intent intent = new Intent(HomePage.this, StatsPage.class);
+        Intent intent = new Intent(this, StatsPage.class);
         startActivity(intent);
-    });
+    }
+
+    public void clickFight(View view) {
+        Intent intent = new Intent(this, FightPage.class);
+        startActivity(intent);
+    }
+
+    public void clickGoals(View view) {
+        Intent intent = new Intent(this, GoalsPage.class);
+        startActivity(intent);
+    }
+
+    public void clickGroups(View view) {
+        Intent intent = new Intent(this, GroupsPage.class);
+        startActivity(intent);
+    }
+
 }
