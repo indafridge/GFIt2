@@ -15,7 +15,7 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        Stats = (Button)findViewById(R.id.btnStats);
+        Stats = findViewById(R.id.btnStats);
     }
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -30,12 +30,9 @@ public class HomePage extends AppCompatActivity {
         // Do something in response to button click
         dispatchTakePictureIntent();
     }
-    Stats.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(HomePage.this, StatsPage.class)  ;
-            startActivity(intent);
-        }
-    });
 
+    public void clickStats(View view) {
+        Intent intent = new Intent(HomePage.this, StatsPage.class);
+        startActivity(intent);
+    });
 }

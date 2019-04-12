@@ -1,4 +1,4 @@
-package com.example.gfit;
+/*package com.example.gfit;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -25,3 +25,4 @@ sad
     })
 
 }
+*/

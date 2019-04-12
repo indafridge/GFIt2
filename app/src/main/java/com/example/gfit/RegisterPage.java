@@ -1,81 +1,83 @@
 package com.example.gfit;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterPage extends AppCompatActivity {
-
-    private DatabaseReference mFirebaseDatabase;
-    private FirebaseDatabase mFirebaseInstance;
-    private String UserId;
-    private EditText Name;
-    private EditText Password;
-    private EditText RePassword;
-    private EditText Email;
-    private Button Account;
+    private static final String TAG = "EmailPassword";
+    private FirebaseAuth mAuth;
+    private EditText email,pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
+        mAuth = FirebaseAuth.getInstance();
 
-        Name = (EditText)findViewById(R.id.etName);
-        Password = (EditText)findViewById(R.id.etPassword);
-        RePassword = (EditText)findViewById(R.id.etRePassword);
-        Email = (EditText)findViewById(R.id.etEmail);
-        Account = (Button)findViewById(R.id.btnAccount);
-
-        mFirebaseInstance = FirebaseDatabase.getInstance();
-        mFirebaseDatabase = mFirebaseInstance.getReference("DataUsers");
-        UserId = mFirebaseDatabase.push().getKey();
+        email = (EditText)findViewById(R.id.etEmail);
+        pass = (EditText)findViewById(R.id.etPass);
     }
 
-    public void addUser(String username, String password, String repassword, String email){
-        User users = new User(username, password, repassword, email);
-        mFirebaseDatabase.child("Users").child(UserId).setValue(users);
+    private void createAccount(String email, String password) {
+
+        // [START create_user_with_email]
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                           // sendEmailVerification();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            Toast.makeText(RegisterPage.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                    }
+                });
+        // [END create_user_with_email]
     }
-    public void updateUser(String username, String password, String repassword, String email){
-        mFirebaseDatabase.child("Users").child(UserId).child("username").setValue(username);
-        mFirebaseDatabase.child("Users").child(UserId).child("password").setValue(password);
-        mFirebaseDatabase.child("Users").child(UserId).child("repassword").setValue(repassword);
-        mFirebaseDatabase.child("Users").child(UserId).child("email").setValue(email);
+   /* private void sendEmailVerification() {
+        // Disable button
+
+
+        // Send verification email
+        // [START send_email_verification]
+        final FirebaseUser user = mAuth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // [START_EXCLUDE]
+                        // Re-enable button
+
+                        Log.v( "SSSS", String.valueOf(user.isEmailVerified()));
+
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END send_email_verification]
     }
-
-    public void insertData(View view){
-        addUser(Name.getText().toString().trim(),Password.getText().toString().trim(),RePassword.getText().toString().trim(),Email.getText().toString().trim());
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage.this);
-
-        builder.setTitle("Alert");
-        builder.setMessage("You have registered");
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-                Intent intent = new Intent(RegisterPage.this, MainActivity.class)  ;
-                startActivity(intent);
-            }
-        });
-        builder.show();
-    }
-    protected void account(View view){
-        Intent intent = new Intent(RegisterPage.this, MainActivity.class)  ;
-        startActivity(intent);
+*/
+    public void ClickSign(View view){
+        createAccount(email.getText().toString(),pass.getText().toString());
     }
 }

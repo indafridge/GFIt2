@@ -1,6 +1,5 @@
 package com.example.gfit;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText Name;
+    private EditText Email;
     private EditText Password;
     private TextView Info;
     private Button Login;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Name = (EditText)findViewById(R.id.etName);
+        Email = (EditText)findViewById(R.id.etEmail);
         Password = (EditText)findViewById(R.id.etPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
         mTextMessage = (TextView) findViewById(R.id.message);
@@ -60,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
               Intent intent = new Intent(MainActivity.this, RegisterPage.class)  ;
-              startActivity(intent);
+                startActivity(intent);
             }
         });
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(Name.getText().toString(), Password.getText().toString());
+                validate(Email.getText().toString(), Password.getText().toString());
             }
         });
     }
