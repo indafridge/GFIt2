@@ -15,15 +15,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-private EditText email, pass;
+private EditText mEmail, mPass;
 private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        email=(EditText)findViewById(R.id.etEmail);
-        pass=(EditText)findViewById(R.id.etPassword);
+        mEmail=(EditText)findViewById(R.id.etEmail);
+        mPass=(EditText)findViewById(R.id.etPassword);
         mAuth = FirebaseAuth.getInstance();
 
     }
@@ -42,7 +42,7 @@ private FirebaseAuth mAuth;
 
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user.isEmailVerified()){
-                                Toast.makeText(MainActivity.this,"Ok Login Success",Toast.LENGTH_SHORT)
+                                Toast.makeText(MainActivity.this,"Ok Login Success",Toast.LENGTH_SHORT);
                             }
 
                         } else {
@@ -65,6 +65,8 @@ private FirebaseAuth mAuth;
     }
 
     public void Login(View view) {
-        signIn(email.getText().toString(),pass.getText().toString());
+        signIn(mEmail.getText().toString(),mPass.getText().toString());
+        Intent intent = new Intent(MainActivity.this, HomePage.class);
+        startActivity(intent);
     }
 }
