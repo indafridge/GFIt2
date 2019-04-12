@@ -24,7 +24,7 @@ private FirebaseAuth mAuth;
         setContentView(R.layout.activity_main);
         email=(EditText)findViewById(R.id.etEmail);
         pass=(EditText)findViewById(R.id.etPassword);
-        mAuth = FirebaseAuth.getInstance()
+        mAuth = FirebaseAuth.getInstance();
 
     }
     public void clickSign(View view){
