@@ -5,21 +5,30 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText Email;
-    private EditText Password;
-    private TextView Info;
+    private EditText email;
+    private EditText password;
     private Button Login;
     private Button Create;
-    private int counter =3;
+    //private TextView Info;
+    //private int counter =3;
     private TextView mTextMessage;
+    private FirebaseAuth mAuth;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Email = (EditText)findViewById(R.id.etEmail);
-        Password = (EditText)findViewById(R.id.etPassword);
-        Info = (TextView)findViewById(R.id.tvInfo);
+        email = (EditText)findViewById(R.id.etEmail);
+        password = (EditText)findViewById(R.id.etPassword);
+        //Info = (TextView)findViewById(R.id.tvInfo);
         mTextMessage = (TextView) findViewById(R.id.message);
         Login = (Button)findViewById(R.id.btnLogin);
         Create = (Button)findViewById(R.id.btnCreate);
 
-        Info.setText("No of attempts remaining: 3");
+        //Info.setText("No of attempts remaining: 3");
 
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +72,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Login.setOnClickListener(new View.OnClickListener() {
+      /*Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validate(Email.getText().toString(), Password.getText().toString());
             }
         });
+    } */
+    private void singIn(String email, String password){
+        Log.d(TAG, "signIn:" + email);
+        if(!validateForm()){
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        }
+                        else{
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                        if(!task.isSuccessful()){
+                            mStatusTextView.setText("")
+                        }
+                    }
+                });
     }
-    public void validate(String userName, String userPassword){
+
+   /* public void validate(String userName, String userPassword){
         if((userName.equals("admin")) && (userPassword.equals("1234"))){
             Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
@@ -84,5 +122,5 @@ public class MainActivity extends AppCompatActivity {
                 Login.setEnabled(false);
             }
         }
-    }
+    } */
 }

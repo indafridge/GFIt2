@@ -34,5 +34,5 @@ public class HomePage extends AppCompatActivity {
     public void clickStats(View view) {
         Intent intent = new Intent(HomePage.this, StatsPage.class);
         startActivity(intent);
-    });
+    }
 }

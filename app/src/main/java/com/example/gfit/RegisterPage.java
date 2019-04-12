@@ -28,8 +28,18 @@ public class RegisterPage extends AppCompatActivity {
         email = (EditText)findViewById(R.id.etEmail);
         pass = (EditText)findViewById(R.id.etPass);
     }
-
+    @Override
+    public void onStart(){
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
     private void createAccount(String email, String password) {
+        Log.d(TAG, "CreateAccount:" + email);
+        if(!validateForm()){
+            return;
+        }
+        showProgressDialog();
 
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -40,16 +50,15 @@ public class RegisterPage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            sendEmailVerification();
-
+                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-
+                            Log.v(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterPage.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
+                            updateUI( null);
                         }
-
+                        hideProgressDialog();
 
                     }
                 });
