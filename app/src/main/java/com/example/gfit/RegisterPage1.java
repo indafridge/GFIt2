@@ -1,4 +1,4 @@
-/* package com.example.gfit;
+package com.example.gfit;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,7 +26,7 @@ public class RegisterPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_page1);
+        setContentView(R.layout.activity_register_page);
 
         Name = (EditText)findViewById(R.id.etName);
         Password = (EditText)findViewById(R.id.etPassword);
@@ -53,7 +53,7 @@ public class RegisterPage extends AppCompatActivity {
     public void insertData(View view){
         addUser(Name.getText().toString().trim(),Password.getText().toString().trim(),RePassword.getText().toString().trim(),Email.getText().toString().trim());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage2.this);
 
         builder.setTitle("Alert");
         builder.setMessage("You have registered");
@@ -68,11 +68,10 @@ public class RegisterPage extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                Intent intent = new Intent(RegisterPage.this, MainActivity.class)  ;
+                Intent intent = new Intent(RegisterPage2.this, MainActivity.class)  ;
                 startActivity(intent);
             }
         });
         builder.show();
     }
 }
-*/

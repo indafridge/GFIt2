@@ -13,11 +13,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-import org.w3c.dom.Text;
-
-public class RegisterPage extends AppCompatActivity {
+public class RegisterPage2 extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
     private FirebaseAuth mAuth;
     private EditText mEmail,mPass;
@@ -25,7 +22,7 @@ public class RegisterPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_page);
+        setContentView(R.layout.activity_register_page2);
         mAuth = FirebaseAuth.getInstance();
         mEmail = (EditText)findViewById(R.id.etEmail);
         mPass = (EditText)findViewById(R.id.etPass);
@@ -46,7 +43,7 @@ public class RegisterPage extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.v(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterPage.this, "Authentication failed.",
+                            Toast.makeText(RegisterPage2.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

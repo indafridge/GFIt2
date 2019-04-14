@@ -28,7 +28,7 @@ private FirebaseAuth mAuth;
 
     }
     public void clickSign(View view){
-        Intent intent = new Intent(MainActivity.this, RegisterPage.class);
+        Intent intent = new Intent(MainActivity.this, RegisterPage2.class);
         startActivity(intent);
     }
     private void signIn(String email, String password) {
