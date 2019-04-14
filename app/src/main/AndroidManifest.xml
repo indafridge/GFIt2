@@ -16,7 +16,7 @@
         <activity android:name=".GroupsPage"></activity>
         <activity android:name=".FightPage" />
         <activity android:name=".StatsPage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
