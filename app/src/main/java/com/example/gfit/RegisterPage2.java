@@ -1,4 +1,4 @@
-package com.example.gfit;
+/*package com.example.gfit;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -77,3 +77,4 @@ public class RegisterPage2 extends AppCompatActivity {
         createAccount(mEmail.getText().toString(),mPass.getText().toString());
     }
 }
+*/

@@ -53,7 +53,7 @@ public class RegisterPage extends AppCompatActivity {
     public void insertData(View view){
         addUser(Name.getText().toString().trim(),Password.getText().toString().trim(),RePassword.getText().toString().trim(),Email.getText().toString().trim());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage2.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterPage.this);
 
         builder.setTitle("Alert");
         builder.setMessage("You have registered");
@@ -68,7 +68,7 @@ public class RegisterPage extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                Intent intent = new Intent(RegisterPage2.this, MainActivity.class)  ;
+                Intent intent = new Intent(RegisterPage.this, MainActivity.class)  ;
                 startActivity(intent);
             }
         });
