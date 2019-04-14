@@ -1,9 +1,13 @@
 package com.example.gfit;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 
 public class GoalsPage extends AppCompatActivity {
@@ -29,6 +33,11 @@ public class GoalsPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void boxClicked(View view) {
+        Toast.makeText(GoalsPage.this,"Goal accomplished ",Toast.LENGTH_SHORT);
 
+    }
 }
+
+
 
