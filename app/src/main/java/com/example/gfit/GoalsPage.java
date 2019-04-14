@@ -1,7 +1,9 @@
 package com.example.gfit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 
 public class GoalsPage extends AppCompatActivity {
@@ -10,6 +12,21 @@ public class GoalsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals_page);
+    }
+
+    public void clickStats(View view) {
+        Intent intent = new Intent(this, StatsPage.class);
+        startActivity(intent);
+    }
+
+    public void clickFight(View view) {
+        Intent intent = new Intent(this, FightPage.class);
+        startActivity(intent);
+    }
+
+    public void clickGroups(View view) {
+        Intent intent = new Intent(this, GroupsPage.class);
+        startActivity(intent);
     }
 
 
