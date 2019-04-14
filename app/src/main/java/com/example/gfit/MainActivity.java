@@ -66,7 +66,5 @@ private FirebaseAuth mAuth;
 
     public void Login(View view) {
         signIn(mEmail.getText().toString(),mPass.getText().toString());
-        Intent intent = new Intent(MainActivity.this, HomePage.class);
-        startActivity(intent);
     }
 }
